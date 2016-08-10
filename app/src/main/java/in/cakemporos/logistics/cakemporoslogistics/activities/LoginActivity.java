@@ -1,4 +1,4 @@
-package in.cakemporos.logistics.cakemporoslogistics;
+package in.cakemporos.logistics.cakemporoslogistics.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -16,7 +17,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -25,34 +25,32 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import in.cakemporos.logistics.cakemporoslogistics.interfaces.Authentication;
-import in.cakemporos.logistics.cakemporoslogistics.models.Login;
-import in.cakemporos.logistics.cakemporoslogistics.models.LoginResponse;
-import in.cakemporos.logistics.cakemporoslogistics.models.ValidateRequest;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import in.cakemporos.logistics.cakemporoslogistics.R;
+import in.cakemporos.logistics.cakemporoslogistics.events.WebServiceCallDoneEvent;
+import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.AuthenticationEndPoint;
+import in.cakemporos.logistics.cakemporoslogistics.web.services.AuthenticationService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static in.cakemporos.logistics.cakemporoslogistics.utilities.FlashMessage.displayContingencyError;
+import static in.cakemporos.logistics.cakemporoslogistics.utilities.FlashMessage.displayError;
+import static in.cakemporos.logistics.cakemporoslogistics.utilities.FlashMessage.displayMessage;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, WebServiceCallDoneEvent {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -117,11 +115,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 forgotpassword_TV.setTextColor(Color.BLUE);
             }
         });
+
+
+
         //Web Services
-        retrofit=new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl(getResources().getString(R.string.base_url))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+
+
     }
 
     private void populateAutoComplete() {
@@ -174,11 +178,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        /*if (mAuthTask != null) {
-            return;
-        }*/
-
-        // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
@@ -215,66 +214,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            //mAuthTask = new UserLoginTask(email, password);
-            //mAuthTask.execute((Void) null);
+            //hit the service TODO
+            AuthenticationEndPoint endPoint = retrofit.create(AuthenticationEndPoint.class);
+            AuthenticationService.getTokenByPassword(this, retrofit, endPoint, email, password, this);
 
-            //hit the service
-            final Authentication authentication=retrofit.create(Authentication.class);
-            Login login=new Login();
-            login.setUsername(email);
-            login.setPassword(password);
-            login.setGrant_type("password");
-            login.setClient_id("efOeHY5Ovf");
-            login.setClient_secret("r18sAsEsxR");
-            Call<LoginResponse> call=authentication.login(login);
-            call.enqueue(new Callback<LoginResponse>() {
-                @Override
-                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    ValidateRequest validateRequest=new ValidateRequest();
-                    validateRequest.setClient_id("efOeHY5Ovf");
-                    validateRequest.setClient_secret("r18sAsEsxR");
-                    validateRequest.setGrant_type("access_token");
-                 //   Toast.makeText(ctx,response.errorBody()+"",Toast.LENGTH_SHORT).show();
-                    if(response.body()==null)
-                    {
-                        showProgress(false);
-                        Toast.makeText(ctx,"Invalid user or pass",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        validateRequest.setAccess_token(response.body().getAccess_token());
-                        //TODO: Put refresh token in DB after creating it
-                        Call<in.cakemporos.logistics.cakemporoslogistics.models.Response> validate_call = authentication.validateToken(validateRequest);
-                        validate_call.enqueue(new Callback<in.cakemporos.logistics.cakemporoslogistics.models.Response>() {
-                            @Override
-                            public void onResponse(Call<in.cakemporos.logistics.cakemporoslogistics.models.Response> call, Response<in.cakemporos.logistics.cakemporoslogistics.models.Response> response) {
-                                showProgress(false);
-                                if (response.body().getCode() == 1) {
-                                    Intent intent = new Intent(ctx, HomeActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(ctx, "An unexpected error occurred", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<in.cakemporos.logistics.cakemporoslogistics.models.Response> call, Throwable t) {
-                                showProgress(false);
-                                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                                mPasswordView.requestFocus();
-                            }
-                        });
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    showProgress(false);
-                    Toast.makeText(ctx,"There was an error...",Toast.LENGTH_SHORT).show();
-                    //Temp access to check UI
-                    Intent intent = new Intent(ctx, HomeActivity.class);
-                    startActivity(intent);
-                }
-            });
         }
     }
     private boolean isUserValid(String email) {
@@ -355,6 +298,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
+    }
+
+    @Override
+    public void onDone(int message_id, int code) {
+        displayMessage(this, getString(message_id), Snackbar.LENGTH_LONG);
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        this.startActivity(intent);
+        this.finish();
+    }
+
+    @Override
+    public void onContingencyError(int code) {
+        displayContingencyError(this, Snackbar.LENGTH_LONG);
+        showProgress(false);
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+    }
+
+    @Override
+    public void onError(int message_id, int code, String args[]) {
+        displayError(this, message_id, Snackbar.LENGTH_LONG, args);
+        showProgress(false);
     }
 
     private interface ProfileQuery {

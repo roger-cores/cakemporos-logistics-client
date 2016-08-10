@@ -1,9 +1,11 @@
-package in.cakemporos.logistics.cakemporoslogistics;
+package in.cakemporos.logistics.cakemporoslogistics.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+
+import in.cakemporos.logistics.cakemporoslogistics.R;
 
 /**
  * Created by maitr on 31-Jul-16.

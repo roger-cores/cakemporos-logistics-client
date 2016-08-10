@@ -1,4 +1,4 @@
-package in.cakemporos.logistics.cakemporoslogistics;
+package in.cakemporos.logistics.cakemporoslogistics.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +12,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import in.cakemporos.logistics.cakemporoslogistics.interfaces.OrderService;
-import in.cakemporos.logistics.cakemporoslogistics.models.Customer;
-import in.cakemporos.logistics.cakemporoslogistics.models.Locality;
-import in.cakemporos.logistics.cakemporoslogistics.models.LoginResponse;
-import in.cakemporos.logistics.cakemporoslogistics.models.Order;
+import in.cakemporos.logistics.cakemporoslogistics.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,9 +28,7 @@ public class BookDeliveryActivity extends AppCompatActivity {
     private ImageButton home;
     private EditText firstName,lastName,phone,altPhone,sublocality,address,cost,dropAltPhone,pickUpDate,pickupTime,dropDate;
 
-    private Customer customer;
-    private Order order;
-    private Locality locality;
+
 
     private Retrofit retrofit;
 
@@ -85,43 +79,7 @@ public class BookDeliveryActivity extends AppCompatActivity {
         confirm_booking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                locality=new Locality();
-                customer=new Customer();
-                order=new Order();
-                //
-                locality.set_id("579df74edf6d425f21603bec");
-                customer.setLocality(locality);
-                customer.setAddress(address.getText().toString());
-                customer.setFirstName(firstName.getText().toString());
-                customer.setLastName(lastName.getText().toString());
-                customer.setPhone(Long.parseLong(phone.getText().toString()));
-                //
-                order.setLocality(locality);
-                order.setCustomer(customer);
-                order.setAddress(customer.getAddress());
-                order.setCakeType(cake_type.getSelectedItem().toString());
-                order.setCost(Integer.parseInt(cost.getText().toString()));
-                order.setAltPhone(Long.parseLong(altPhone.getText().toString()));
-                order.setPickUpDate(pickUpDate.getText()+" "+pickupTime.getText().toString());
-                order.setDropDate("12/01/2020 03:03:33");
-                order.setWeight(weight_of_cake.getSelectedItem().toString());
-                order.setDropAltPhone(Long.parseLong(altPhone.getText().toString()));
-
-                OrderService orderService = retrofit.create(OrderService.class);
-                Call<Order> call =  orderService.createOrder(order);
-
-                call.enqueue(new Callback<Order>() {
-                    @Override
-                    public void onResponse(Call<Order> call, Response<Order> response) {
-                        Toast.makeText(ctx_book_delivery,"Order Created",Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Order> call, Throwable t) {
-                        Toast.makeText(ctx_book_delivery,"Failed to create",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                //TODO Hit service
 
             }
         });

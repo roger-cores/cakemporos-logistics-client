@@ -26,18 +26,18 @@
     <string name="img_app_ver">About v1.0</string>
     <!-- Strings related to book delivery -->
     <string name="title_book_delivery">BOOK DELIVERY</string>
-    
+
     <string name="form_product_details">PRODUCT DETAILS</string>
     <string name="edit1_cake_type">Cake Type*</string>
     <string name="edit1_weight_of_cake">Weight of Cake*</string>
     <string name="edit1_cost_of_cake">Cost of Cake*</string>
-    
+
     <string name="form_pickup_details">PICK UP DETAILS</string>
     <string name="edit2_address">Address</string>
     <string name="edit2_alternative_phone">Alternative Phone</string>
     <string name="edit2_pickup_date">Pick Up Date*</string>
     <string name="edit2_pickup_time">Pick Up Time*</string>
-    
+
     <string name="form_drop_details">DROP DETAILS</string>
     <string name="edit3_first_name">First Name*</string>
     <string name="edit3_last_name">Last Name</string>
@@ -63,8 +63,34 @@
     <string name="express_desc">Delivery booked within 2 hours.</string>
     <string name="express_rate_5km">Rs. 65</string>
     <string name="express_rate_more_5km">Rs. 15</string>
+
+
+    <!-- Error Messages -->
+    <string name="error_contingency">Someone spoiled the recipe!\nPlease wait while we behead them.</string>
+    <string name="invalid_user_credentials">I don\'t know you yet! Sign Up now!</string>
+    <string name="request_timed_out">Unable to reach the server! Please contact the developer.</string>
+    <string name="offline">Please check your internet connection</string>
+
     <!-- Strings related to Web Services -->
-    <string name="base_url">http://192.168.43.68:3000/api/</string>
+    <string name="base_url">http://192.168.0.107:3000/api/</string>
     <string name="connection_error">There was an error...</string>
+
+    <!-- Strings related to web service authentication -->
+    <string name="client_id">efOeHY5Ovf</string>
+    <string name="client_secret">r18sAsEsxR</string>
+    <string name="grant_password">password</string>
+    <string name="grant_refresh">refresh_token</string>
+    <string name="grant_access">access_token</string>
+    <string name="error_session">Credentials corrupted. Sign in again.</string>
+
+    <string name="success">Successful</string>
+
+    <!--- Web Service Error Descs -->
+    <string name="invalid_credentials">Invalid resource owner credentials</string>
+
+
+    <!-- Splash Activity -->
+    <string name="title_activity_splash">Cakemporos Logistics</string>
+    <string name="please_sign_in" />
 
 </resources>
