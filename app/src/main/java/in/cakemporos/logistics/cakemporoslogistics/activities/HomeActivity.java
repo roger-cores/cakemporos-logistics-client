@@ -7,16 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import in.cakemporos.logistics.cakemporoslogistics.R;
-import in.cakemporos.logistics.cakemporoslogistics.events.WebServiceCallDoneEvent;
-import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.OrderEndPoint;
-import in.cakemporos.logistics.cakemporoslogistics.web.services.OrderService;
+import in.cakemporos.logistics.cakemporoslogistics.events.OnWebServiceCallDoneEventListener;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by maitr on 29-Jul-16.
  */
-public class HomeActivity extends AppCompatActivity implements WebServiceCallDoneEvent{
+public class HomeActivity extends AppCompatActivity implements OnWebServiceCallDoneEventListener {
     private View book_delivery,rate_card,order_history,my_account,refer_baker,app_ver;
     private Context ctx_home=this;
 
@@ -84,12 +82,11 @@ public class HomeActivity extends AppCompatActivity implements WebServiceCallDon
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        OrderEndPoint orderEndPoint = retrofit.create(OrderEndPoint.class);
-        OrderService.test(this, retrofit, orderEndPoint, this);
+
     }
 
     @Override
-    public void onDone(int message_id, int code) {
+    public void onDone(int message_id, int code, Object... args) {
 
     }
 

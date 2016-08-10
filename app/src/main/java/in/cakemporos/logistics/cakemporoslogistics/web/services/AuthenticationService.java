@@ -16,7 +16,7 @@ import java.net.SocketTimeoutException;
 import in.cakemporos.logistics.cakemporoslogistics.R;
 import in.cakemporos.logistics.cakemporoslogistics.dbase.Key;
 import in.cakemporos.logistics.cakemporoslogistics.dbase.Utility;
-import in.cakemporos.logistics.cakemporoslogistics.events.WebServiceCallDoneEvent;
+import in.cakemporos.logistics.cakemporoslogistics.events.OnWebServiceCallDoneEventListener;
 import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.AuthenticationEndPoint;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.AuthRequest;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.AuthResponse;
@@ -35,7 +35,7 @@ public class AuthenticationService {
                                            final boolean validateRefresh,
                                            Key key,
                                            final AuthenticationEndPoint authenticationEndPoint,
-                                           final WebServiceCallDoneEvent event){
+                                           final OnWebServiceCallDoneEventListener event){
 
         if(key.getAccess().equals("")) {
             getTokenByRefresh(activity, retrofit, key, authenticationEndPoint, event);
@@ -110,7 +110,7 @@ public class AuthenticationService {
                                          final Retrofit retrofit,
                                          final Key key,
                                          final AuthenticationEndPoint authenticationEndPoint,
-                                         final WebServiceCallDoneEvent event){
+                                         final OnWebServiceCallDoneEventListener event){
 
         if(key.getRefresh().equals("")) {
             //TODO end of chain - default
@@ -187,7 +187,7 @@ public class AuthenticationService {
                                           final AuthenticationEndPoint authenticationEndPoint,
                                           String email,
                                           String password,
-                                          final WebServiceCallDoneEvent event){
+                                          final OnWebServiceCallDoneEventListener event){
 
         AuthRequest loginRequest = new AuthRequest(email, password, activity);
         Call<AuthResponse> login = authenticationEndPoint.getToken(loginRequest);

@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/edit1_cost_of_cake"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
@@ -171,39 +171,59 @@
                     android:maxLines="1"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="5dp"-->
+                <!--android:id="@+id/til2_pickup_date"-->
+                <!--android:layout_below="@+id/til2_address">-->
+                <!--<EditText-->
+                    <!--android:id="@+id/et_pickup_date_pickup_details"-->
+                    <!--android:nextFocusDown="@+id/et_pickup_time_pickup_details"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:hint="@string/edit2_pickup_date"-->
+                    <!--android:inputType="date"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:singleLine="true"/>-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+            <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/til2_pickup_date"
-                android:layout_below="@+id/til2_address">
-                <EditText
-                    android:id="@+id/et_pickup_date_pickup_details"
-                    android:nextFocusDown="@+id/et_pickup_time_pickup_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/edit2_pickup_date"
-                    android:inputType="date"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+                android:layout_below="@+id/til2_address"
+                android:text="Pickup Date"
+                android:onClick="pickupDate"
+                />
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="5dp"-->
+                <!--android:id="@+id/til2_pickup_time"-->
+                <!--android:layout_toRightOf="@+id/til2_pickup_date"-->
+                <!--android:layout_below="@+id/til2_address">-->
+                <!--<EditText-->
+                    <!--android:id="@+id/et_pickup_time_pickup_details"-->
+                    <!--android:nextFocusDown="@+id/et_first_name_drop_details"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:hint="@string/edit2_pickup_time"-->
+                    <!--android:inputType="time"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:singleLine="true"/>-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+            <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/til2_pickup_time"
                 android:layout_toRightOf="@+id/til2_pickup_date"
-                android:layout_below="@+id/til2_address">
-                <EditText
-                    android:id="@+id/et_pickup_time_pickup_details"
-                    android:nextFocusDown="@+id/et_first_name_drop_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/edit2_pickup_time"
-                    android:inputType="time"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_below="@+id/til2_address"
+                android:layout_alignParentRight="true"
+                android:text="Pickup Time"
+                android:onClick="pickupTime"
+                />
         </RelativeLayout>
         <Button
             android:layout_width="wrap_content"
@@ -314,13 +334,13 @@
                 android:padding="5dp"
                 android:id="@+id/til3_sub_locality"
                 android:layout_below="@+id/til3_phone_no">
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/et_sub_locality_drop_details"
                     android:nextFocusDown="@+id/et_address_drop_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/edit3_sub_locality"
-                    android:inputType="text"
+                    android:inputType="textAutoComplete"
                     android:maxLines="1"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
@@ -340,6 +360,30 @@
                     android:maxLines="1"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
+
+
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/til2_drop_date"
+                android:layout_below="@+id/til3_sub_locality"
+                android:text="Pickup Date"
+                android:onClick="pickDropDate"
+                />
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/til2_drop_time"
+                android:layout_toRightOf="@+id/til2_drop_date"
+                android:layout_below="@+id/til3_address"
+                android:layout_alignParentRight="true"
+                android:text="Pickup Time"
+                android:onClick="pickDropTime"
+                />
+
         </RelativeLayout>
         <Button
             android:layout_width="match_parent"

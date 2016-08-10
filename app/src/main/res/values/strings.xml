@@ -92,5 +92,8 @@
     <!-- Splash Activity -->
     <string name="title_activity_splash">Cakemporos Logistics</string>
     <string name="please_sign_in" />
+    <string name="unauthorized">Unauthorized</string>
+    <string name="bad_input">Request Failed</string>
+    <string name="invalid_time">Time is invalid</string>
 
 </resources>

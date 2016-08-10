@@ -12,7 +12,7 @@ import android.view.View;
 
 import in.cakemporos.logistics.cakemporoslogistics.R;
 import in.cakemporos.logistics.cakemporoslogistics.dbase.Utility;
-import in.cakemporos.logistics.cakemporoslogistics.events.WebServiceCallDoneEvent;
+import in.cakemporos.logistics.cakemporoslogistics.events.OnWebServiceCallDoneEventListener;
 import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.AuthenticationEndPoint;
 import in.cakemporos.logistics.cakemporoslogistics.web.services.AuthenticationService;
 import retrofit2.Retrofit;
@@ -25,7 +25,7 @@ import static in.cakemporos.logistics.cakemporoslogistics.utilities.FlashMessage
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class SplashActivity extends AppCompatActivity implements WebServiceCallDoneEvent{
+public class SplashActivity extends AppCompatActivity implements OnWebServiceCallDoneEventListener {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -173,7 +173,7 @@ public class SplashActivity extends AppCompatActivity implements WebServiceCallD
     }
 
     @Override
-    public void onDone(int message_id, int code) {
+    public void onDone(int message_id, int code, Object... args) {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(intent);

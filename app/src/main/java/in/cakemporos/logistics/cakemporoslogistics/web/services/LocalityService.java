@@ -10,8 +10,10 @@ import java.util.List;
 import in.cakemporos.logistics.cakemporoslogistics.R;
 import in.cakemporos.logistics.cakemporoslogistics.dbase.Utility;
 import in.cakemporos.logistics.cakemporoslogistics.events.OnWebServiceCallDoneEventListener;
+import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.LocalityEndPoint;
 import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.OrderEndPoint;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.Error;
+import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Locality;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Order;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -23,17 +25,15 @@ import retrofit2.Retrofit;
 /**
  * Created by roger on 10/8/16.
  */
-public class OrderService {
-    public static void getMyOrders(final Activity activity,
-                                   final Retrofit retrofit,
-                                   final OrderEndPoint orderEndPoint,
-                                   final OnWebServiceCallDoneEventListener event){
-
-        Call<List<Order>> getOrdersCall = orderEndPoint.getMyOrders(Utility.getKey(activity).getAccess());
-
-        getOrdersCall.enqueue(new Callback<List<Order>>() {
+public class LocalityService {
+    public static void getAllLocalities(final Activity activity,
+                                 final Retrofit retrofit,
+                                 final LocalityEndPoint localityEndPoint,
+                                 final OnWebServiceCallDoneEventListener event){
+        Call<List<Locality>> callForGetAllLocalities = localityEndPoint.getAllLocalities(Utility.getKey(activity).getAccess());
+        callForGetAllLocalities.enqueue(new Callback<List<Locality>>() {
             @Override
-            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+            public void onResponse(Call<List<Locality>> call, Response<List<Locality>> response) {
                 if(response != null && !response.isSuccessful() && response.errorBody() != null) {
                     //Branch: Error
                     Converter<ResponseBody, Error> errorConverter =
@@ -51,17 +51,17 @@ public class OrderService {
                         e.printStackTrace();
                     }
                 } else if(response != null && response.body() != null){
-                    List<Order> orders = null;
-                    orders = response.body();
+                    List<Locality> localities = null;
+                    localities = response.body();
 
-                    event.onDone(R.string.success, 1, orders);
+                    event.onDone(R.string.success, 1, localities);
                 } else {
                     event.onContingencyError(0);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Order>> call, Throwable t) {
+            public void onFailure(Call<List<Locality>> call, Throwable t) {
                 if(t instanceof IOException){
                     event.onError(R.string.offline, 2);
                 } else if(t instanceof SocketTimeoutException){
@@ -71,15 +71,15 @@ public class OrderService {
         });
     }
 
-    public static void createOrder(final Order order,
-                            final Activity activity,
-                            final Retrofit retrofit,
-                            final OrderEndPoint orderEndPoint,
-                            final OnWebServiceCallDoneEventListener event){
-        Call<Order> callForCreateOrder = orderEndPoint.createOrder(Utility.getKey(activity).getAccess(), order);
-        callForCreateOrder.enqueue(new Callback<Order>() {
+    public static void getLocalitiesBySearch(final Activity activity,
+                                      final Retrofit retrofit,
+                                      final LocalityEndPoint localityEndPoint,
+                                      final OnWebServiceCallDoneEventListener event,
+                                      final String query){
+        Call<List<Locality>> callForSearchLocalities = localityEndPoint.getLocalitiesBySearch(query, Utility.getKey(activity).getAccess());
+        callForSearchLocalities.enqueue(new Callback<List<Locality>>() {
             @Override
-            public void onResponse(Call<Order> call, Response<Order> response) {
+            public void onResponse(Call<List<Locality>> call, Response<List<Locality>> response) {
                 if(response != null && !response.isSuccessful() && response.errorBody() != null) {
                     //Branch: Error
                     Converter<ResponseBody, Error> errorConverter =
@@ -87,28 +87,27 @@ public class OrderService {
                     try {
                         Error error = errorConverter.convert(response.errorBody());
                         switch (error.getError()) {
-                            case "Validation failed":
-                                event.onError(R.string.bad_input, 0);
-                                break;
                             case "Unauthorized":
                                 event.onError(R.string.unauthorized, 0);
-                                break;
+                                return;
+                            default:
+                                event.onContingencyError(0);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else if(response != null && response.body() != null){
-                    Order order;
-                    order = response.body();
+                    List<Locality> localities = null;
+                    localities = response.body();
 
-                    event.onDone(R.string.success, 1, order);
+                    event.onDone(R.string.success, 1, localities);
                 } else {
                     event.onContingencyError(0);
                 }
             }
 
             @Override
-            public void onFailure(Call<Order> call, Throwable t) {
+            public void onFailure(Call<List<Locality>> call, Throwable t) {
                 if(t instanceof IOException){
                     event.onError(R.string.offline, 2);
                 } else if(t instanceof SocketTimeoutException){

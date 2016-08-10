@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.cakemporos.logistics.cakemporoslogistics.R;
-import in.cakemporos.logistics.cakemporoslogistics.events.WebServiceCallDoneEvent;
+import in.cakemporos.logistics.cakemporoslogistics.events.OnWebServiceCallDoneEventListener;
 import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.AuthenticationEndPoint;
 import in.cakemporos.logistics.cakemporoslogistics.web.services.AuthenticationService;
 import retrofit2.Retrofit;
@@ -50,7 +50,7 @@ import static in.cakemporos.logistics.cakemporoslogistics.utilities.FlashMessage
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, WebServiceCallDoneEvent {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, OnWebServiceCallDoneEventListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -301,7 +301,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     @Override
-    public void onDone(int message_id, int code) {
+    public void onDone(int message_id, int code, Object... args) {
         displayMessage(this, getString(message_id), Snackbar.LENGTH_LONG);
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
