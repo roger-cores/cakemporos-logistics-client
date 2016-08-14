@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey">
+    android:background="@drawable/background_wallpaper"
+    >
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
             android:layout_height="140dp"
             android:background="@color/white"
             android:layout_margin="10dp"
+            android:alpha="0.6"
             android:layout_marginTop="20dp"
             android:id="@+id/grid_1"
             android:layout_width="150dp"
