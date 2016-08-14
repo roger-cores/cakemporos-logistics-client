@@ -26,8 +26,8 @@ public class HomeActivity extends AppCompatActivity implements OnWebServiceCallD
         setContentView(R.layout.activity_home);
         //get views
         book_delivery= findViewById(R.id.grid_1);
-        rate_card= findViewById(R.id.grid_2);
-        order_history= findViewById(R.id.grid_3);
+        rate_card= findViewById(R.id.grid_3);
+        order_history= findViewById(R.id.grid_2);
         my_account= findViewById(R.id.grid_4);
         refer_baker= findViewById(R.id.grid_5);
         app_ver= findViewById(R.id.grid_6);
@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements OnWebServiceCallD
         order_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_book=new Intent(ctx_home,RateCardActivity.class);
+                Intent intent_book=new Intent(ctx_home,OrderHistoryActivity.class);
                 startActivity(intent_book);
             }
         });

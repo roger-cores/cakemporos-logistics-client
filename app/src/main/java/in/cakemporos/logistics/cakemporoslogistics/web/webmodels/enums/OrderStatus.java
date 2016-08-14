@@ -7,5 +7,5 @@ public enum OrderStatus {
     PEN,
     DISP,
     CAN,
-    SHI
+    DEL
 }

@@ -31,6 +31,9 @@
             android:name=".activities.SelectCustomerActivity"
             android:label="@string/home_name"></activity>
         <activity
+            android:name=".activities.OrderHistoryActivity"
+            android:label="@string/home_name"></activity>
+        <activity
             android:name=".activities.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash"

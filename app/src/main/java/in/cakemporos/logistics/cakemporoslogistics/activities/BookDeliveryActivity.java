@@ -1,5 +1,6 @@
 package in.cakemporos.logistics.cakemporoslogistics.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,7 +58,7 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
     private Button confirm_booking,select_existing_customer;
     private Button pickupDate,pickupTime, dropDate, dropTime;
     private ImageButton home;
-    private EditText firstName,lastName,phone,altPhone,address,cost,dropAltPhone;
+    private EditText firstName,lastName,phone,altPhone,address,pick_address,cost,dropAltPhone;
     private AutoCompleteTextView sublocality;
     private SimpleDateFormat simpleDateFormatForDate = new SimpleDateFormat("dd-MMM");
     private SimpleDateFormat simpleDateFormatForTime = new SimpleDateFormat("hh:mm a");
@@ -87,7 +88,26 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
         loadAllLocalities();
 
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        {
+                if (resultCode == 1) {
+                    // TODO Extract the data returned from the child Activity.
+                   // Customer customerValues= (Customer) data.getSerializableExtra("customer");
+                    Bundle bundle=data.getExtras();
+                    Customer customerValues= (Customer) bundle.getSerializable("customer");
+                    firstName.setText(customerValues.getFirstName());
+                    lastName.setText(customerValues.getLastName());
+                    address.setText(customerValues.getAddress());
+                    phone.setText(customerValues.getPhone()+"");
+                    sublocality.setText(customerValues.getLocality().getName());
+                    selectedLocality = customerValues.getLocality();
+                    selectedCustomer=customerValues;
+                    Toast.makeText(ctx_book_delivery,customerValues.getId(),Toast.LENGTH_SHORT).show();
+                }
+        }
+    }
     public void loadAllLocalities(){
         LocalityEndPoint endPoint = retrofit.create(LocalityEndPoint.class);
         LocalityService.getAllLocalities(this, retrofit, endPoint, new OnWebServiceCallDoneEventListener() {
@@ -143,7 +163,7 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
                 order.setWeight(OrderWeight.TWO);
                 break;
         }
-        order.setAddress(address.getText().toString());
+        order.setAddress(pick_address.getText().toString());
         order.setDropAltPhone(Long.parseLong(dropAltPhone.getText().toString()));
         order.setAltPhone(Long.parseLong(altPhone.getText().toString()));
         order.setLocality(selectedLocality);
@@ -186,6 +206,7 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
         altPhone=(EditText)findViewById(R.id.et_alternative_phone_drop_details);
         sublocality=(AutoCompleteTextView) findViewById(R.id.et_sub_locality_drop_details);
         address=(EditText)findViewById(R.id.et_address_drop_details);
+        pick_address=(EditText)findViewById(R.id.et_address_pickup_details);
         cost=(EditText)findViewById(R.id.et_cost_of_cake_product_details);
         pickupDate =(Button) findViewById(R.id.til2_pickup_date);
         pickupTime=(Button) findViewById(R.id.til2_pickup_time);
@@ -218,7 +239,8 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
             @Override
             public void onClick(View view) {
                 Intent intent_select_existing_customer=new Intent(ctx_book_delivery,SelectCustomerActivity.class);
-                startActivity(intent_select_existing_customer);
+                startActivityForResult(intent_select_existing_customer,1);
+                //startActivity(intent_select_existing_customer);
             }
         });
         //
@@ -262,13 +284,9 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
     }
 
     private void initWebService(){
-        Gson gson = new GsonBuilder()
-                .setDateFormat("dd-MM-yyyy HH:mm:ss")
-                .create();
-
         retrofit=new Retrofit.Builder()
                 .baseUrl(getResources().getString(R.string.base_url))
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
@@ -414,6 +432,10 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
     @Override
     public void onDone(int message_id, int code, Object... args) {
         displayMessage(this, "Success", Snackbar.LENGTH_LONG);
+
+        //Go to Order History
+        Intent intent_oh=new Intent(ctx_book_delivery,OrderHistoryActivity.class);
+        startActivity(intent_oh);
     }
 
     @Override

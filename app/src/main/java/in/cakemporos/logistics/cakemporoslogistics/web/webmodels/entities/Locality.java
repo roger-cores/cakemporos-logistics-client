@@ -1,5 +1,7 @@
 package in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by roger on 10/8/16.
  */

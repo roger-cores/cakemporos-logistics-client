@@ -1,5 +1,7 @@
 package in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.enums.CakeType;
@@ -24,6 +26,9 @@ public class Order extends EntityBase {
 
     private Date dropDate;
 
+    @SerializedName("createOrderDate")
+    private Date bookingDate;
+
     private Long altPhone;
 
     private OrderWeight weight;
@@ -36,7 +41,6 @@ public class Order extends EntityBase {
 
     private Long dropAltPhone;
 
-    private Date createOrderDate;
 
     public Baker getBaker() {
         return baker;
@@ -142,11 +146,11 @@ public class Order extends EntityBase {
         this.dropAltPhone = dropAltPhone;
     }
 
-    public Date getCreateOrderDate() {
-        return createOrderDate;
+    public Date getBookingDate() {
+        return bookingDate;
     }
 
-    public void setCreateOrderDate(Date createOrderDate) {
-        this.createOrderDate = createOrderDate;
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 }

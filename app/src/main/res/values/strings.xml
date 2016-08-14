@@ -96,4 +96,15 @@
     <string name="bad_input">Request Failed</string>
     <string name="invalid_time">Time is invalid</string>
 
+    <!-- Strings related to Order History-->
+    <string name="title_order_history">ORDER HISTORY</string>
+    <string name="order_id">ORDER ID : </string>
+    <string name="booking_date">Booking Date</string>
+    <string name="pickup_date">Pick Up Date</string>
+    <string name="drop_date">Drop Date</string>
+    <string name="customer_name">Customer Name: </string>
+    <string name="phone_number">Phone No: </string>
+    <string name="pickup_location">Pick Up Location</string>
+    <string name="drop_location">Drop Location</string>
+    <string name="order_status">Pending</string>
 </resources>

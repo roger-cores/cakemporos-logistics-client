@@ -1,9 +1,11 @@
 package in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by roger on 10/8/16.
  */
-public class Customer extends EntityBase{
+public class Customer extends EntityBase {
 
     public String firstName;
 
