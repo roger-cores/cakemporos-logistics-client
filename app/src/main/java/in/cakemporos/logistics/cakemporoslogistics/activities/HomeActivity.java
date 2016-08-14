@@ -18,7 +18,6 @@ public class HomeActivity extends AppCompatActivity implements OnWebServiceCallD
     private View book_delivery,rate_card,order_history,my_account,refer_baker,app_ver;
     private Context ctx_home=this;
 
-
     private Retrofit retrofit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,21 +56,21 @@ public class HomeActivity extends AppCompatActivity implements OnWebServiceCallD
         my_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_book=new Intent(ctx_home,RateCardActivity.class);
+                Intent intent_book=new Intent(ctx_home,MyAccountActivity.class);
                 startActivity(intent_book);
             }
         });
         refer_baker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_book=new Intent(ctx_home,RateCardActivity.class);
+                Intent intent_book=new Intent(ctx_home,ReferBakerActivity.class);
                 startActivity(intent_book);
             }
         });
         app_ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_book=new Intent(ctx_home,RateCardActivity.class);
+                Intent intent_book=new Intent(ctx_home,AppVersionActivity.class);
                 startActivity(intent_book);
             }
         });

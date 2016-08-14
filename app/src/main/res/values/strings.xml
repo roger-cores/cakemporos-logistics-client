@@ -107,4 +107,12 @@
     <string name="pickup_location">Pick Up Location</string>
     <string name="drop_location">Drop Location</string>
     <string name="order_status">Pending</string>
+
+    <!-- Strings related to My Account-->
+    <string name="title_my_account">My Account</string>
+    <!-- Strings related to Refer Baker-->
+    <string name="title_refer_baker">Refer Baker</string>
+    <!-- Strings related to App Version-->
+    <string name="title_app_version">Version 1.0</string>
+    <string name="version_description">This is version 1.0 of Cakemporos Logistics</string>
 </resources>
