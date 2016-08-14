@@ -33,11 +33,11 @@
             <ImageView
                 android:layout_width="170dp"
                 android:layout_height="170dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/login_logo"
                 android:layout_gravity="center_horizontal"
-                android:src="@mipmap/ic_only_logo"/>
+                android:src="@drawable/login_logo"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

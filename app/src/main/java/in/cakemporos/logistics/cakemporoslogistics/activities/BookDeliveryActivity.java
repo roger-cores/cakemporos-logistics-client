@@ -436,6 +436,7 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
         //Go to Order History
         Intent intent_oh=new Intent(ctx_book_delivery,OrderHistoryActivity.class);
         startActivity(intent_oh);
+        finish();
     }
 
     @Override

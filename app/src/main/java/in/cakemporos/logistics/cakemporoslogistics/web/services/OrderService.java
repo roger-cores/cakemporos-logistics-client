@@ -175,8 +175,6 @@ public class OrderService {
 
     }
 
-
-
     public static void cancelOrder(final Activity activity,
                                  final Retrofit retrofit,
                                  final OrderEndPoint orderEndPoint,
