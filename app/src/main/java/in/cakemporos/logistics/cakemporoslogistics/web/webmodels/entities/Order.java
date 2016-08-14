@@ -40,7 +40,15 @@ public class Order extends EntityBase {
     private Customer customer;
 
     private Long dropAltPhone;
+    private String orderCode;
 
+    public String getOrderCode() {
+        return orderCode;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
 
     public Baker getBaker() {
         return baker;

@@ -16,24 +16,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.LoginActivity"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".activities.HomeActivity"
             android:label="@string/home_name" />
-        <activity
-            android:name=".activities.BookDeliveryActivity" />
-        <activity
-            android:name=".activities.RateCardActivity" />
-        <activity
-            android:name=".activities.SelectCustomerActivity" />
-        <activity
-            android:name=".activities.OrderHistoryActivity" />
-        <activity
-            android:name=".activities.AppVersionActivity"/>
-        <activity
-            android:name=".activities.MyAccountActivity"/>
-        <activity
-            android:name=".activities.ReferBakerActivity"/>
+        <activity android:name=".activities.BookDeliveryActivity" />
+        <activity android:name=".activities.RateCardActivity" />
+        <activity android:name=".activities.SelectCustomerActivity" />
+        <activity android:name=".activities.OrderHistoryActivity" />
+        <activity android:name=".activities.AppVersionActivity" />
+        <activity android:name=".activities.MyAccountActivity" />
+        <activity android:name=".activities.ReferBakerActivity" />
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -45,7 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

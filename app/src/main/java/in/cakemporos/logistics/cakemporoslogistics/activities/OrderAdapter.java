@@ -82,7 +82,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         //
         date=sdf.format(mDataset[position].getDropDate());
         String drop_date="Drop Date\n"+date;
-        holder.order_id_oh.setText(mDataset[position].getId());
+        holder.order_id_oh.setText(mDataset[position].getOrderCode());
         holder.booking_date_oh.setText(booking_date);
         holder.pickup_date_oh.setText(pickup_date);
         holder.order_status_oh.setText(mDataset[position].getStatus().toString());
