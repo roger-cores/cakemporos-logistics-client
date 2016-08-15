@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Cakemporos Logistics</string>
-    <string name="home_name">Welcome User</string>
+    <string name="app_name"></string>
+    <string name="home_name"></string>
     <!-- Strings related to login -->
     <string name="prompt_email">USERNAME</string>
     <string name="prompt_password">PASSWORD</string>
@@ -72,7 +72,7 @@
     <string name="offline">Please check your internet connection</string>
 
     <!-- Strings related to Web Services -->
-    <string name="base_url">http://192.168.0.107:3000/api/</string>
+    <string name="base_url">http://www.galvanie.com:3000/api/</string>
     <string name="connection_error">There was an error...</string>
 
     <!-- Strings related to web service authentication -->
@@ -106,14 +106,24 @@
     <string name="phone_number">Phone No: </string>
     <string name="pickup_location">Pick Up Location</string>
     <string name="drop_location">Drop Location</string>
-    <string name="order_status">PEN</string>
+    <string name="order_status">PENDING</string>
+    <string name="order_details_menu">Order Details</string>
+    <string name="change_status_menu">Change Status</string>
+
+    <!-- Strings related to Order Status Change-->
+    <string name="select_status">Select Status:</string>
+    <string name="ready_status">Ready</string>
+    <string name="dispatch_status">Dispatched</string>
+    <string name="cancel_status">Cancelled</string>
 
     <!-- Strings related to My Account-->
     <string name="title_my_account">My Account</string>
+
     <!-- Strings related to Refer Baker-->
     <string name="title_refer_baker">Refer Baker</string>
     <string name="referral_code">Referral Code</string>
     <string name="default_code">0000</string>
+
     <!-- Strings related to App Version-->
     <string name="title_app_version">Version 1.0</string>
     <string name="version_description">About\nCakemporos\nOS</string>

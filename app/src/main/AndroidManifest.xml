@@ -27,6 +27,7 @@
         <activity android:name=".activities.AppVersionActivity" />
         <activity android:name=".activities.MyAccountActivity" />
         <activity android:name=".activities.ReferBakerActivity" />
+        <activity android:name=".activities.ChangeStatusActivity" />
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

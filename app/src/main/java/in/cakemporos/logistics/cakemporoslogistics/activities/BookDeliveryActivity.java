@@ -144,7 +144,7 @@ public class BookDeliveryActivity extends AppCompatActivity implements OnWebServ
 
         Order order = new Order();
 
-        order.setStatus(OrderStatus.PEN);
+        order.setStatus(OrderStatus.PENDING);
         order.setCakeType(CakeType.valueOf(cake_type.getSelectedItem().toString().toUpperCase()));
         order.setCost(Long.parseLong(cost.getText().toString()));
         order.setPickUpDate(pickupDateTime.getTime());

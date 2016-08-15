@@ -34,9 +34,8 @@
         android:rowCount="3">
         <RelativeLayout
             android:layout_height="140dp"
-            android:background="@color/white"
+            android:background="@color/white_overlay"
             android:layout_margin="10dp"
-            android:alpha="0.6"
             android:layout_marginTop="20dp"
             android:id="@+id/grid_1"
             android:layout_width="150dp"
@@ -45,7 +44,6 @@
             android:id="@+id/grid_book_delivery"
             android:layout_width="match_parent"
             android:clickable="false"
-            android:background="@color/white"
             android:src="@drawable/ic_van"
             android:layout_height="120dp"/>
             <TextView
@@ -59,7 +57,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_height="140dp"
-            android:background="@color/white"
+            android:background="@color/white_overlay"
             android:layout_margin="10dp"
             android:layout_marginTop="20dp"
             android:id="@+id/grid_2"
@@ -69,7 +67,6 @@
                 android:id="@+id/grid_order_history"
                 android:layout_width="match_parent"
                 android:clickable="false"
-                android:background="@color/white"
                 android:src="@drawable/ic_clock"
                 android:layout_height="110dp"/>
             <TextView
@@ -84,7 +81,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_height="140dp"
-            android:background="@color/white"
+            android:background="@color/white_overlay"
             android:layout_margin="10dp"
             android:id="@+id/grid_3"
             android:layout_width="150dp"
@@ -93,7 +90,6 @@
                 android:id="@+id/grid_rate_card"
                 android:layout_width="match_parent"
                 android:clickable="false"
-                android:background="@color/white"
                 android:src="@drawable/ic_rupee"
                 android:layout_height="110dp"/>
             <TextView
@@ -108,7 +104,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_height="140dp"
-            android:background="@color/white"
+            android:background="@color/white_overlay"
             android:layout_margin="10dp"
             android:id="@+id/grid_4"
             android:layout_width="150dp"
@@ -117,7 +113,6 @@
                 android:id="@+id/grid_my_account"
                 android:layout_width="match_parent"
                 android:clickable="false"
-                android:background="@color/white"
                 android:src="@drawable/ic_user"
                 android:layout_height="110dp"/>
             <TextView
@@ -131,7 +126,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_height="140dp"
-            android:background="@color/white"
+            android:background="@color/white_overlay"
             android:layout_margin="10dp"
             android:id="@+id/grid_5"
             android:layout_width="150dp"
@@ -140,7 +135,6 @@
                 android:id="@+id/grid_refer_baker"
                 android:layout_width="match_parent"
                 android:clickable="false"
-                android:background="@color/white"
                 android:src="@drawable/ic_speaker"
                 android:layout_height="110dp"/>
             <TextView
@@ -154,7 +148,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_height="140dp"
-            android:background="@color/white"
+            android:background="@color/white_overlay"
             android:layout_margin="10dp"
             android:id="@+id/grid_6"
             android:layout_width="150dp"
@@ -163,7 +157,6 @@
                 android:id="@+id/grid_app_ver"
                 android:layout_width="match_parent"
                 android:clickable="false"
-                android:background="@color/white"
                 android:src="@drawable/ic_info_phone"
                 android:layout_height="100dp"/>
             <TextView
