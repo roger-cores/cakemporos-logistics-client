@@ -1,13 +1,10 @@
-package in.cakemporos.logistics.cakemporoslogistics.activities;
+package in.cakemporos.logistics.cakemporoslogistics.adapters;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import in.cakemporos.logistics.cakemporoslogistics.R;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Customer;

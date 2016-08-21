@@ -1,11 +1,9 @@
 package in.cakemporos.logistics.cakemporoslogistics.activities;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,11 +19,11 @@ import java.util.Collections;
 import java.util.List;
 
 import in.cakemporos.logistics.cakemporoslogistics.R;
+import in.cakemporos.logistics.cakemporoslogistics.adapters.OrderAdapter;
 import in.cakemporos.logistics.cakemporoslogistics.events.OnWebServiceCallDoneEventListener;
 import in.cakemporos.logistics.cakemporoslogistics.utilities.Factory;
 import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.OrderEndPoint;
 import in.cakemporos.logistics.cakemporoslogistics.web.services.OrderService;
-import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Customer;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Order;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.enums.OrderStatus;
 import retrofit2.Retrofit;

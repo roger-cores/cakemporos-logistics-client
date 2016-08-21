@@ -113,10 +113,16 @@ public class SplashActivity extends AppCompatActivity implements OnWebServiceCal
                 .build();
 
 
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                AuthenticationEndPoint endPoint = retrofit.create(AuthenticationEndPoint.class);
+                AuthenticationService.validateAccessToken(SplashActivity.this, retrofit, true, Utility.getKey(SplashActivity.this), endPoint, SplashActivity.this);
+            }
+        }, 5000);
 
 
-        AuthenticationEndPoint endPoint = retrofit.create(AuthenticationEndPoint.class);
-        AuthenticationService.validateAccessToken(this, retrofit, true, Utility.getKey(this), endPoint, this);
 
     }
 

@@ -1,20 +1,16 @@
-package in.cakemporos.logistics.cakemporoslogistics.activities;
+package in.cakemporos.logistics.cakemporoslogistics.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import in.cakemporos.logistics.cakemporoslogistics.R;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Order;
@@ -99,7 +95,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.drop_location_oh.setText(mDataset[position].getCustomer().getAddress());
         //
         //
-        ((AppCompatActivity)orderAdapter_ctx).setSupportActionBar(holder.menu_toolbar_oh);
+        //((AppCompatActivity)orderAdapter_ctx).setSupportActionBar(holder.menu_toolbar_oh);
         //
         holder.phone_no_oh.setTextColor(Color.parseColor("#845a9a"));
 

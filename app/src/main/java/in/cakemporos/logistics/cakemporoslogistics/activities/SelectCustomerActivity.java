@@ -8,19 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import in.cakemporos.logistics.cakemporoslogistics.R;
+import in.cakemporos.logistics.cakemporoslogistics.adapters.CustomerAdapter;
 import in.cakemporos.logistics.cakemporoslogistics.events.OnWebServiceCallDoneEventListener;
 import in.cakemporos.logistics.cakemporoslogistics.utilities.Factory;
 import in.cakemporos.logistics.cakemporoslogistics.web.endpoints.CustomerEndPoint;
 import in.cakemporos.logistics.cakemporoslogistics.web.services.CustomerService;
 import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Customer;
-import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Locality;
-import in.cakemporos.logistics.cakemporoslogistics.web.webmodels.entities.Order;
 import retrofit2.Retrofit;
 
 import static in.cakemporos.logistics.cakemporoslogistics.utilities.FlashMessage.displayContingencyError;
